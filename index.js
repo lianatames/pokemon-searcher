@@ -90,7 +90,6 @@ app.listen(port, () => {
 
 // Function to create an array containing data of a pokemon to pass to html
 function getPokemonData(pokemon, maxNum){
-    console.log(pokemon.data.stats);
     const pokemonData = {
         name: pokemon.data.name,
         id: pokemon.data.id,
@@ -110,7 +109,6 @@ function getPokemonType(pokemon) {
     const typesArray = [];
     for (let i = 0; i<typesData.length; i++){
         typesArray.push(typesData[i].type.name);
-        console.log(typesArray[i]);
     }
     return typesArray;
 }
@@ -120,8 +118,6 @@ function getPokemonStats(pokemon) {
     const statData = pokemon.data.stats;
     const statArray = [];
     for (let i = 0; i<statData.length; i++){
-        console.log(`Stat: ${statData[i].stat.name}, Base-stat: ${statData[i].base_stat}`);
-        
         statArray.push({
             name: statData[i].stat.name,
             base_stat: statData[i].base_stat
@@ -148,7 +144,6 @@ function convertWeight(pokemonWeight){
 
 // Check if the pokemon ID is a valid ID of an existing pokemon
 function checkValidSearch(number, maxNum) {
-  console.log(`Entered number: ${number}, MaxNum: ${maxNum}`);
   if (number < maxNum && number > 0) {
     return true;
   } else {
