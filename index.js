@@ -22,7 +22,7 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/search", async (req, res) => {
-    const searchData = req.body.search;
+    const searchData = req.body.search.toLowerCase();
 
     try {
       // Retrieve max number of pokemon
