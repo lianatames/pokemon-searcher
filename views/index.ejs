@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/pokeball.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="/styles/main.css">
+    <title>Pokemon Searcher</title>
+</head>
+<body>
+    <header class="p-3 text-bg-dark">
+        <div class="container d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="col-auto d-flex align-items-center me-4 mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="/images/pokeball.png" height="50px" width="50px">
+                <h1 class="m-0 p-1">Pokemon Searcher</h1>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Search Area -->
+        <div id="searchArea" class="container d-flex flex-column flex-wrap align-items-center justify-content-center p-4 bg-dark-subtle">
+            <!-- Search form -->
+            <form id="searchForm" method="POST" class="row justify-content-center mb-2" role="search">
+                <!-- Search Text -->
+                <div class="col-12 d-flex justify-content-center">
+                    <label id="searchLabel" for="searchBar" class="form-label">Search by Pokemon Name or ID Number</label>
+                </div>
+                <!-- Search Bar -->
+                <div class="col-8 p-0 px-2">
+                    <input id="searchBar" type="text" name="search" class="form-control" placeholder="Search"
+                        aria-describedby="searchLabel" required>
+                </div>
+                <!-- Search Button -->
+                <div class="col-auto d-flex px-2">
+                    <button type="submit" form="searchForm" formaction="/search" class="btn btn-outline-dark">Search</button>
+                </div>
+            </form>
+    
+            <!-- Random button form -->
+            <form id="randomForm" method="POST" class="row" role="search">
+                <button type="submit" form="randomForm" formaction="/random" class="btn btn-warning">Random Pokemon!</button>
+            </form>
+        </div> <!-- End of Search Form Area -->
+
+        <!-- Main Content Area -->
+        <div class="container my-5 p-5 text-center bg-body-secondary rounded-3">
+            <!-- Home page greeting and instruction message -->
+            <% if(locals.greeting){ %>
+                <h2><%=greeting%></h2>
+                <% if(locals.message){ %>
+                    <p class="fs-5"><%=message%></p>
+                <% } %>
+                <p class="fs-5">This web application was made using <a href="https://pokeapi.co/">PokeAPI</a> and is used for 
+                    educational and portfolio purposes only.</p>
+            <% } else if (locals.error){%>
+                <h2><%=error%></h2>
+            <% } %>
+
+            <!-- Name and ID Number Div-->
+            <% if (locals.id || locals.name) { %>
+                <div class="heading-div mb-3 text-body-emphasis">
+                    <% if (locals.id) { %>
+                        <h2 class="pokeTitle id-num text-start">No. <%=id%></h2>
+                    <% } %>
+                    <% if (locals.name) { %>
+                        <h2 class="pokeTitle text-center"><%=name%></h2>   
+                    <% } else if (locals.error) { %>
+                        <h2 class="text-center"><%=error%></h2>   
+                    <% } %>
+                </div>   
+            <% } %>
+            
+            <!-- Div to hold sprite and pokemon information -->
+            <% if (locals.name) { %>
+            <div class="row row-gap-3">
+                <!-- Sprite -->
+                <div class="col-lg-6 align-self-center ">
+                    <% if (locals.sprite) { %>
+                        <% if (sprite === null){ %>
+                            <p>No image available.</p>
+                        <% } else { %>
+                            <img class="sprite object-fit-contain bg-body-tertiary" src=<%=sprite%> width="300" height="300">
+                        <% } %>
+                    <% } %>
+                </div>
+
+                <!-- Information Div -->
+                <div class="details p-4 col-lg-6 bg-body-tertiary">
+                    <!-- Types -->
+                    <p class="col-12 mx-auto fs-5 text-muted">
+                        <% if (locals.types) { %>
+                            <% types.forEach((type, i)=> { %>
+                                <img src="/images/<%=type%>-icon.png" width="100" height="22">
+                            <% }) %>
+                        <% } %>
+                    </p>
+
+                    <!-- Height and Weight -->
+                    <% if (locals.height) { %>
+                        <p class=""><span class="bold">Height: </span><%=height%></p>
+                    <% } %>
+                    <% if (locals.weight) { %>
+                        <p class=""><span class="bold">Weight: </span><%=weight%></p>
+                    <% } %>
+            
+                    <!-- Stats -->
+                    <% if (locals.stats) { %>
+                        <table id="statTable" class="table table-bordered m-auto">
+                            <tr>
+                                <th colspan="4">Base Stats</th> 
+                            </tr>
+                            <% stats.forEach((stat, i)=> { %>
+                                <tr>
+                                    <th class="text-capitalize text-end"><%=stat.name%></th>
+                                    <td><%=stat.base_stat%></td>
+                                </tr>
+                            <% }) %>
+                        </table>
+                    <% } %>
+                </div> <!-- End of Information Area -->
+            </div> <!-- End Sprite and Information Area -->
+            <% } %>
+        </div> <!-- End Main Content Div Area -->
+    </main>
+
+    <footer>
+        Copyright © Made by Liana Tames <%= new Date().getFullYear() %>
+    </footer>
+    
+</body>
+</html>

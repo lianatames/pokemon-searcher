@@ -1,0 +1,89 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Start #dd4f4f from 0 and end at 35%, Start #303030 at 35% and end at 45%, Start #ffffff again at 45% and end at 100% */
+    background: linear-gradient(135deg, #dd4f4f 35%, #303030 35%, #303030 45%, #ffffff 45%);
+    background-repeat: no-repeat; /* To avoid multiple instances */
+}
+
+h1{
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 2.8rem;
+}
+
+/* Form */
+.submit-form{
+    height: 60px;
+}
+
+#searchArea{
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+#searchLabel {
+    text-align: center;
+}
+
+/* Pokemon Number and Name Div */
+.heading-div {
+    clear: both;
+    background: linear-gradient(135deg, #dd4f4f 35%, #303030 35%, #303030 100%);
+    background-repeat: no-repeat; /* To avoid multiple instances */
+    border-radius: 0 30px 30px 0;
+    padding: 5px 0;
+    color: white;
+    text-transform: capitalize;
+}
+
+.id-num {
+    float: left;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1.3rem;
+}
+
+.pokeTitle{
+    margin: 0;
+    color: white;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.sprite {
+    border-radius: 10px;
+    border: 10px solid white;
+}
+
+.details {
+    border-radius: 20px;
+    padding: 10px;
+    border: 10px solid white;
+}
+
+p {
+    font-size: 18px;
+}
+
+/* Table with base stats */
+#statTable{
+    width: 250px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+td {
+    width: 100px;
+}
+
+footer {
+    margin-top: auto;
+    padding: 20px;
+    text-align: right;
+}
